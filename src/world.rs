@@ -53,7 +53,7 @@ impl World {
                         let u = (i as f32 + rand) / (image_width - 1) as f32;
                         let v = (j as f32 + rand2) / (image_height - 1) as f32;
                         let ray = self.camera.get_ray(u, v);
-                        last + ray_color(&ray, &self, MAX_DEPTH)
+                        last + ray_color(&ray, self, MAX_DEPTH)
                     });
                 write_color(pixel);
             }
@@ -61,7 +61,7 @@ impl World {
     }
 }
 fn ray_color(ray: &Ray, world: &World, depth: usize) -> Color {
-    if depth <= 0 {
+    if depth == 0 {
         return Color::ZERO;
     }
     if let Some(record) = world.hit(ray, 0.001, f32::MAX) {

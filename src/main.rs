@@ -1,12 +1,8 @@
-use ray_tracer::{
-    color::write_color, intersectable::Intersectable, math::random_unit_vec, prelude::*,
-};
-use std::{iter::repeat_with, time::Instant};
+use ray_tracer::{intersectable::Intersectable, prelude::*};
+use std::time::Instant;
 
 fn main() {
     let start = Instant::now();
-    let image_height = (IMAGE_WIDTH as f32 / ASPECT_RATIO) as usize;
-    let image_width = IMAGE_WIDTH;
     // World
     let mut world = World::default();
     world.push(Intersectable::Sphere {
